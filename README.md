@@ -16,7 +16,7 @@ To install `mnu`, just grab the `mnu.lua` file from the repo, place it in your p
 _G.mnu = require("mnu.lua")
 ```
 
-## How tu use `st8`?
+## How tu use `mnu`?
 `mnu` is very easy to use, you just have to know the very basics.
 
 First, create a menu with `mnu:new(name, x, y)`
