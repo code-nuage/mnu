@@ -19,6 +19,7 @@ _G.mnu = require("mnu.lua")
 ## How tu use `mnu`?
 `mnu` is very easy to use, you just have to know the very basics.
 
+### General presentation
 First, create a menu with `mnu:new(name, x, y)`
 ```lua
 local MENU = menu:new("Main menu", 100, 100)
@@ -49,10 +50,14 @@ You can also clear a menu with `mnu:clear()`
 ```lua
 MENU:clear()
 ```
-
-You can modify the border color and the border size of the selected item with `mnu:set_color(r, g, b)` and `mnu:set_border_size(size)`
+`mnu` contains a bunch of selected modes, that modify the appearence of the current selected item, by default it is `color` but we will change it for `border` here with `mnu:set_mode(mode)`
 ```lua
-MENU:set_color(1, 1, 0)
+MNEU:set_mode("border")
+```
+
+You can modify the border color and the border size of the selected item with `mnu:set_border_color(r, g, b)` and `mnu:set_border_size(size)`
+```lua
+MENU:set_border_color(1, 1, 0)
 MENU:set_border_size(3)
 ```
 
@@ -68,4 +73,49 @@ And finally you can draw your menu in `love.draw()` with `mnu:draw()`
 function love.draw()
   MENU:draw()
 end
+```
+
+### Selected modes
+There are a bunch of pre-written selected mode: `color`, `border`, `blink`, `zoom` and `shake`.
+It's your job to hack the lib to add some.
+
+As said previously in **General presentation**, you can set the mode of the current selected item with `mnu:set_mode(mode)`. 
+They all are tweakable with methods, named like: `mnu:set_<mode>_<setting>`
+
+#### `color`
+The basic (and default) selected mode, it just renders a different color as a selected indicator
+
+```lua
+MENU:set_color_color(r, g, b)
+```
+
+#### `border`
+A basic text outline, looks weird when the difference between font size and border size is big
+
+```lua
+MENU:set_border_color(r, g, b)
+MENU:set_border_size(size)
+```
+
+#### `blink`
+A generic blinking selected mode, switch the selected item between menu color and blinking color
+
+```lua
+MENU:set_blink_color(r, g, b)
+MENU:set_blink_period(t)
+```
+
+#### `zoom`
+Zooms the current selected item
+
+```lua
+MENU:set_zoom_scale(scale)
+```
+
+#### `shake`
+Shakes the current selected item
+
+```lua
+MENU:set_shake_period(t)
+MENU:set_shake_interval(distance)
 ```
